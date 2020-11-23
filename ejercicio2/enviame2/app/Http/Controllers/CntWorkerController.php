@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\ValidateController;
 use Exception;
+use Illuminate\Routing\Controller;
 class CntWorkerController extends Controller
 {
     public function getValidate(){
@@ -36,9 +37,7 @@ class CntWorkerController extends Controller
                 $validateData = $this->getValidate()->ValidateData($request,'contract');
                 //Si no existe mensaje
                 if(!isset($validateData['mensaje'])){
-                    //Validacion de rut que no venga con guión y que no tenga más de 8 digitos
                     if($this->getValidateContract($request['code_contract'])){
-                        //Guardando los datos de la empresa, se verifica su existencia
                         if($this->saveWorker($request)){
                             return response()->json(['mensaje' => 'El contrato del trabajador a sido guardada exitosamente'], 200);
                         }else{
@@ -127,7 +126,6 @@ class CntWorkerController extends Controller
     {
         try{
             if($request->method('PUT')){
-                //la unica variable obligatoria es el rut empresa, para realizar la busqueda correspondiente
                 $validateData = $this->getValidate()->ValidateData($request,'updatecontract');
                 if(!isset($validateData['mensaje'])){
                     $exist = $this->obtenerWorker($request['code_contract']);
@@ -238,7 +236,6 @@ class CntWorkerController extends Controller
     public function saveWorker($data){
         try{
             Log::info($data);
-            //Si existe el rut empresa no se debe realizar el guardado de esta
             if(!$this->obtenerWorker($data['contract_code'])){
                 $contract = $this->Contract();
                 $contract->contract_code        = $data['contract_code'];
@@ -264,10 +261,8 @@ class CntWorkerController extends Controller
         
     }
     public function obtenerWorker($contract_code){
-        //Verificando en base de datos la existencia de la empresa
         $existe = $this->Contract()::where('contract_code',$contract_code);
         if($existe->count()>0){
-            //Si existe la empresa la retorna
             return $existe->first();
         }else{
             return false;

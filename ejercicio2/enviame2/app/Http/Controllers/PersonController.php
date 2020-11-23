@@ -27,7 +27,6 @@ class PersonController extends Controller
                 if(!isset($validateData['mensaje'])){
                     //Validacion de rut que no venga con guión y que no tenga más de 8 digitos
                     if($this->getValidateRut($request['rut_person'])){
-                        //Guardando los datos de la empresa, se verifica su existencia
                         if($this->savePerson($request)){
                             return response()->json(['mensaje' => 'La persona a sido guardada exitosamente'], 200);
                         }else{
@@ -77,7 +76,7 @@ class PersonController extends Controller
     {
         try{
             if($request->method('PUT')){
-                //la unica variable obligatoria es el rut empresa, para realizar la busqueda correspondiente
+                //la unica variable obligatoria es el rut, para realizar la busqueda correspondiente
                 $validateData = $this->getValidate()->ValidateData($request,'updateperson');
                 if(!isset($validateData['mensaje'])){
                     $exist = $this->obtenerPerson($request['rut_person']);

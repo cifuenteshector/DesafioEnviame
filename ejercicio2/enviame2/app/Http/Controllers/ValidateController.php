@@ -116,6 +116,31 @@ class ValidateController extends Controller
                 );
                 return array($validacion, $validate);
                 break;
+            case 'getpersona':
+                $validacion = array(
+                    'rut_person'        => isset($data['rut_person'])     ? $data['rut_person'] : '',
+                    'identificador'     => isset($data['identificador'])     ? $data['identificador'] : '',
+                    'dv_verif_person'   => isset($data['dv_verif_person'])      ? $data['dv_verif_person'] : '',
+                    'fkid_civil_status' => isset($data['fkid_civil_status'])   ? $data['fkid_civil_status'] : '',
+                    'fkid_gender'       => isset($data['fkid_gender'])    ? $data['fkid_gender'] : '',
+                    'fkid_nationality'  => isset($data['fkid_nationality'])    ? $data['fkid_nationality'] : '',
+                    'passport'          => isset($data['passport'])         ? $data['passport'] : '',
+                    'first_name'        => isset($data['first_name'])         ? $data['first_name'] : '',
+                    'last_name'         => isset($data['last_name'])         ? $data['last_name'] : '',
+                );
+                $validate = array(
+                    'rut_person'        =>  'required|integer|digits_between:7,8',
+                    'dv_verif_person'   =>  'string|min:1',
+                    'fkid_civil_status' =>  'string|max:100',
+                    'fkid_gender'       =>  'string|max:100',
+                    'fkid_nationality'  =>  'string|max:100',
+                    'passport'          =>  'string|max:100',
+                    'birthday'          =>  'string|max:100',
+                    'first_name'        =>  'string|max:100',
+                    'last_name'         =>  'string|max:100',
+                );
+                return array($validacion, $validate);
+                break;
             case 'updateperson':
                 $validacion = array(
                     'rut_person'        => isset($data['rut_person'])     ? $data['rut_person'] : '',
@@ -148,6 +173,84 @@ class ValidateController extends Controller
                 );
                 $validate = array(
                     'rut_person'       =>  'required|integer|digits_between:7,8',
+                );
+                return array($validacion, $validate);
+                break;
+            case 'worker':
+                $validacion = array(
+                    'code_contract'         => isset($data['code_contract'])     ? $data['code_contract'] : '',
+                    'fkid_company'          => isset($data['fkid_company'])   ? $data['fkid_company'] : '',
+                    'fkid_persona'          => isset($data['fkid_persona'])    ? $data['fkid_persona'] : '',
+                    'fkid_position'         => isset($data['fkid_position'])    ? $data['fkid_position'] : '',
+                    'fkid_work_shift'       => isset($data['fkid_work_shift'])    ? $data['fkid_work_shift'] : '',
+                    'fkid_type_contract'    => isset($data['fkid_type_contract'])         ? $data['fkid_type_contract'] : '',
+                    'contract_start_date'   => isset($data['contract_start_date'])         ? $data['contract_start_date'] : '',
+                    'contract_end_date'     => isset($data['contract_end_date'])         ? $data['contract_end_date'] : '',
+                );
+                $validate = array(
+                    'code_contract'         =>  'required|string',
+                    'fkid_company'          =>  'string|min:1',
+                    'fkid_persona'          =>  'string|max:100',
+                    'fkid_position'         =>  'string|max:100',
+                    'fkid_work_shift'       =>  'string|max:100',
+                    'fkid_type_contract'    =>  'string|max:100',
+                    'contract_start_date'   =>  'timestamp|max:100',
+                    'contract_end_date'     =>  'timestamp|max:100',
+                );
+                return array($validacion, $validate);
+                break;
+            case 'getworker':
+                $validacion = array(
+                    'code_contract'         => isset($data['code_contract'])     ? $data['code_contract'] : '',
+                    'fkid_company'          => isset($data['fkid_company'])   ? $data['fkid_company'] : '',
+                    'fkid_persona'          => isset($data['fkid_persona'])    ? $data['fkid_persona'] : '',
+                    'fkid_position'         => isset($data['fkid_position'])    ? $data['fkid_position'] : '',
+                    'fkid_work_shift'       => isset($data['fkid_work_shift'])    ? $data['fkid_work_shift'] : '',
+                    'fkid_type_contract'    => isset($data['fkid_type_contract'])         ? $data['fkid_type_contract'] : '',
+                    'contract_start_date'   => isset($data['contract_start_date'])         ? $data['contract_start_date'] : '',
+                    'contract_end_date'     => isset($data['contract_end_date'])         ? $data['contract_end_date'] : '',
+                );
+                $validate = array(
+                    'code_contract'         =>  'required|string',
+                    'fkid_company'          =>  'string|min:1',
+                    'fkid_persona'          =>  'string|max:100',
+                    'fkid_position'         =>  'string|max:100',
+                    'fkid_work_shift'       =>  'string|max:100',
+                    'fkid_type_contract'    =>  'string|max:100',
+                    'contract_start_date'   =>  'timestamp|max:100',
+                    'contract_end_date'     =>  'timestamp|max:100',
+                );
+                return array($validacion, $validate);
+                break;
+            case 'updateworker':
+                $validacion = array(
+                    'code_contract'         => isset($data['code_contract'])     ? $data['code_contract'] : '',
+                    'fkid_company'          => isset($data['fkid_company'])   ? $data['fkid_company'] : '',
+                    'fkid_persona'          => isset($data['fkid_persona'])    ? $data['fkid_persona'] : '',
+                    'fkid_position'         => isset($data['fkid_position'])    ? $data['fkid_position'] : '',
+                    'fkid_work_shift'       => isset($data['fkid_work_shift'])    ? $data['fkid_work_shift'] : '',
+                    'fkid_type_contract'    => isset($data['fkid_type_contract'])         ? $data['fkid_type_contract'] : '',
+                    'contract_start_date'   => isset($data['contract_start_date'])         ? $data['contract_start_date'] : '',
+                    'contract_end_date'     => isset($data['contract_end_date'])         ? $data['contract_end_date'] : '',
+                );
+                $validate = array(
+                    'code_contract'         =>  'required|string',
+                    'fkid_company'          =>  'string|min:1',
+                    'fkid_persona'          =>  'string|max:100',
+                    'fkid_position'         =>  'string|max:100',
+                    'fkid_work_shift'       =>  'string|max:100',
+                    'fkid_type_contract'    =>  'string|max:100',
+                    'contract_start_date'   =>  'timestamp|max:100',
+                    'contract_end_date'     =>  'timestamp|max:100',
+                );
+                return array($validacion, $validate);
+                break;
+            case 'deleteworker':
+                $validacion = array(
+                    'code_contract'        => isset($data['code_contract'])     ? $data['code_contract'] : '',
+                );
+                $validate = array(
+                    'code_contract'       =>  'required|string',
                 );
                 return array($validacion, $validate);
                 break;

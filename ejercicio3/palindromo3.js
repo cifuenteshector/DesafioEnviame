@@ -3,18 +3,10 @@ function palindromo(){
     let temp= '';
     
     console.log(temp);
-    //for (let index = 0; 4; index++) {
-      //  if(index > 2){
-            temp = cadena.match(/.{1,4}/g);
-            //temp = cadena.split(/(.{'index'})/).filter(O=>O);
-            //console.log(temp);
-        //}
-    //}
-    //     //console.log(temp);
+            temp = cadena.match(/.{1,4}/g)
         if(temp.length > 1){
             FindPalindrome(temp);
         }
-    //}
 }
 function FindPalindrome(palabra) {
     palabra.forEach(element => {
