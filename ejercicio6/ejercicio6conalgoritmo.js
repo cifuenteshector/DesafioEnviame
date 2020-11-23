@@ -26,7 +26,6 @@ function getRanges () {
     Math.floor(Math.random() * 2000)
   ]
   
-  test1 = estimateTime(testArray[0])
-  test2 = estimateTime(testArray[1])
-  test3 = estimateTime(testArray[2])
-  console.log(test1, test2, test3)
+  for(z=0;z<testArray.length;z++){
+    console.log(estimateTime(testArray[z]))
+  }
