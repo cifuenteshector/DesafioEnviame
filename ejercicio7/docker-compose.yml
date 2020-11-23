@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  mysql_serve:
+    image: mysql:8.0.18
+    container_name: db_enviame7
+    ports:
+      - 33060:3306
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123456
+      MYSQL_DATABASE: enviame
+      MYSQL_ROOT_PASSWORD: 123456
